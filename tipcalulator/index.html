@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="extra.css">
+    <link rel="stylesheet" href="numpad/numpad.css">
+    <link rel="stylesheet" href="survey/survey.css">
+    <link rel="stylesheet" href="Theme/theme.css">
+    <style>
+        /* Internal CSS for this example */
+        #first {
+            width: 100%; /* Full width of the parent */
+            table-layout: fixed; /* Fixes column widths */
+        }
+
+        #first .col1 {
+            width: 90%; /* 90% width for column 1 */
+            text-align: center; /* Center align content in column 1 */
+        }
+
+        #first .col2 {
+            width: 10%; /* 10% width for column 2 */
+            text-align: right; /* Right align content in column 2 */
+        }
+
+        #first td {
+            padding: 10px; /* Optional padding for better spacing */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Custom Number Entry Modal -->
+
+    <div id="numberpadModal" class="numpad-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeNumpad()">&times;</span>
+            <h2>Numpad</h2>
+            <div class="numpad">
+                <button onclick="addToInput(1)">1</button>
+                <button onclick="addToInput(2)">2</button>
+                <button onclick="addToInput(3)">3</button>
+                <button onclick="addToInput(4)">4</button>
+                <button onclick="addToInput(5)">5</button>
+                <button onclick="addToInput(6)">6</button>
+                <button onclick="addToInput(7)">7</button>
+                <button onclick="addToInput(8)">8</button>
+                <button onclick="addToInput(9)">9</button>
+                <button onclick="addToInput('.')">.</button> <!-- Decimal point button -->
+                <button onclick="addToInput(0)">0</button>
+                <button onclick="clearInput()">C</button>
+                <button onclick="submitInput()" style="grid-column: span 3;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="outer-container">
+        <div class="container">
+            <table id="first">
+                <tr>
+                    <td class="col1"><h1>Tip Calculator</h1></td>
+                    <td class="col2">
+                        <button id="themeBtn" class="theme-selection" onclick="openThemeSelector()" style="background: none; border: none; cursor: pointer; padding: 0; margin-left: 0px;">
+                            ⚙️
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <div id="settingsMenu" class="settings-menu" style="display: none;">
+                <ul>
+                    <li onclick="openThemeSelector()">Theme</li>
+                    <li onclick="openHelp()">Help</li>
+                    <li onclick="openAbout()">About Us</li>
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <table>
+                    <tr>
+                        <td><label for="billAmount">Bill Amount:</label></td>
+                        <td><input type="text" id="billAmount" placeholder="Enter bill amount"></td>
+                        <td><button class="openNumberPad numpad-button" onclick="openNumpad('billAmount')"></button>
+                        </td>
+                    <tr>
+                        <td><label for="serviceRating">Service Rating (1-10):</label></td>
+                        <td><select id="serviceRating">
+                                <option value="">--Select Rating--</option>
+                            </select></td>
+                        <td><button class="surveyBtn" title="If confused, take a quick survey!"
+                                onclick="openSurvey()">?</button></td>
+                    </tr>
+                    <tr>
+                        <td><label for="peopleCount">Number of People:</label></td>
+                        <td><input type="number" id="peopleCount" placeholder="Number of people" min="1"></td>
+                        <td><button class="openNumberPad numpad-button" onclick="openNumpad('peopleCount')"></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Survey Modal -->
+            <div id="surveyModal" class="survey-modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeSurvey()">&times;</span>
+                    <h2>Quick Service Survey</h2>
+                    <form id="surveyForm">
+                        <label>1. Was the service prompt?</label>
+                        <div class="options">
+                            <input type="radio" name="q1" value="1"> Yes
+                            <input type="radio" name="q1" value="0"> No
+                        </div>
+
+                        <label>2. Was the staff courteous?</label>
+                        <div class="options">
+                            <input type="radio" name="q2" value="1"> Yes
+                            <input type="radio" name="q2" value="0"> No
+                        </div>
+
+                        <label>3. Did the service meet your expectations?</label>
+                        <div class="options">
+                            <input type="radio" name="q3" value="1"> Yes
+                            <input type="radio" name="q3" value="0"> No
+                        </div>
+
+                        <label>4. Was the environment clean and pleasant?</label>
+                        <div class="options">
+                            <input type="radio" name="q4" value="1"> Yes
+                            <input type="radio" name="q4" value="0"> No
+                        </div>
+
+                        <label>5. Would you recommend this service to others?</label>
+                        <div class="options">
+                            <input type="radio" name="q5" value="1"> Yes
+                            <input type="radio" name="q5" value="0"> No
+                        </div>
+
+                        <button type="button" onclick="submitSurvey()">Submit Survey</button>
+                    </form>
+                </div>
+            </div>
+
+            
+
+
+            <!-- Tip Amount Display -->
+            <div class="input-group" id="last">
+                <table>
+                    <tr>
+                        <td><label for="tipAmount">Tip Amount:</label></td>
+                        <td><input class="last" type="text" id="tipAmount" readonly></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <small id="tipPerPersonText" class="small-text-right"></small>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br />
+            <!-- Share per Person Display -->
+            <div class="input-group" >
+                <table>
+                    <tr>
+                        <td><label for="shareAmount">Share per Person:</label></td>
+                        <td><input class ="last" type="text" id="shareAmount" readonly></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <small id="totalAmountText" class="small-text-right"></small>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="input-group">
+                <button id="calculateBtn">Calculate</button>
+                <button id="resetBtn" onclick="resetFields()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Theme Selection Modal -->
+    <div id="themeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeThemeSelector()">&times;</span>
+            <h3>Select Theme Color</h3>
+            <div class="theme-options">
+                <button class="theme-circle" data-color="#f28b82"></button>
+                <button class="theme-circle" data-color="#fbbc04"></button>
+                <button class="theme-circle" data-color="#fff475"></button>
+                <button class="theme-circle" data-color="#ccff90"></button>
+                <button class="theme-circle" data-color="#a7ffeb"></button>
+                <button class="theme-circle" data-color="#cbf0f8"></button>
+                <button class="theme-circle" data-color="#aecbfa"></button>
+                <button class="theme-circle" data-color="#d7aefb"></button>
+                <button class="theme-circle" data-color="#fdcfe8"></button>
+            </div>
+            <div class="mode-toggle" id="button-container">
+                <button id="darkModeBtn" onclick="setDarkMode()">Dark Mode</button>
+                <button id="lightModeBtn" onclick="setLightMode()">Light Mode</button>
+            </div>
+        </div>
+
+
+        <div id="errorMessage"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="numpad/numpad.js"></script>
+    <script src="survey/survey.js"></script>
+    <script src="Theme/theme.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+/* Numpad Modal */
+.numpad-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% 0 10% auto; /* Centered vertically, positioned to the right */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* Could be more or less, depending on screen size */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    position: absolute; /* Position absolute for better alignment */
+    right: 0; /* Align to the right */
+}
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 10px; /* Space between title and numpad */
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.numpad-button {
+    width: 30px; /* Set the desired width for the button */
+    height: 40px; /* Keep the same height as the input */
+    background-image: url('image.png'); /* Path to your numpad image */
+    background-size: 20px 20px; /* Set the image size */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    border: none; /* Remove default border */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 5px; /* Optional: rounded corners */
+    transition: transform 0.2s; /* Smooth scaling effect */
+    margin-left: 5px; /* Space between input and button */
+    background-color: white; /* Set the background color to white */
+}
+
+.numpad-button:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+input[type="text"], input[type="number"] {
+    height: 40px; /* Set a consistent height for the input fields */
+    padding: 5px; /* Adjust padding as needed */
+}

@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5; /* Slightly lighter background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px; /* Add some padding around the edges */
+}
+
+.container {
+    background-color: #ffffff; /* White background for the container */
+    padding: 40px; /* Increased padding for better spacing */
+    border-radius: 12px; /* Slightly rounder corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    width: 100%;
+    max-width: 500px; /* Responsive max width */
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px; /* Larger font size for the heading */
+    font-weight: 600; /* Bolder font for better impact */
+}
+
+label {
+    display: block;
+    margin-top: 15px; /* More space above labels */
+    color: #555;
+    font-weight: 500; /* Slightly bolder for emphasis */
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between input and button */
+}
+
+input, select, button {
+    width: calc(100% - 20px); /* Subtracting space for padding */
+    padding: 12px; /* Increased padding for comfort */
+    margin: 10px 0;
+    border-radius: 6px; /* Softer border radius */
+    border: 1px solid #dcdcdc; /* Light gray border */
+    transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+input:focus, select:focus {
+    border-color: #4CAF50; /* Green border on focus */
+    outline: none; /* Remove default outline */
+}
+
+input[readonly] {
+    background-color: #f9f9f9; /* Light background for readonly inputs */
+}
+
+button {
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border: none; /* Remove default button border */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+.openNumberPad {
+    width: auto; /* Auto width for number pad button */
+    margin-left: 10px;
+    background-color: #007BFF;
+    color: white;
+}
+
+button.openNumberPad:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+input.error {
+    border-color: red; /* Red border for errors */
+}
+
+#errorMessage {
+    color: red;
+    margin-top: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px; /* Larger close button */
+    color: #999; /* Subtle color */
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #333; /* Darker on hover */
+}
+
+/* Style for small text */
+.small-text-right {
+    display: block; 
+    font-size: 12px; /* Slightly larger small text */
+    font-style: italic; 
+    text-align: right; 
+    color: #666; 
+    margin-top: 5px; 
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Space above the table */
+}
+
+td {
+    vertical-align: middle; 
+}
+
+/* Align the first column (labels) to the left */
+td:first-child {
+    text-align: left;
+    width: 40%; /* Adjust as needed */
+}
+
+/* Set the width of the input/select column */
+td:nth-child(2) {
+    width: 45%; /* Ensure proper spacing */
+}
+
+/* Set the width of the numpad button column */
+td:nth-child(3) {
+    text-align: left;
+    width: 15%; /* Provide space for button */
+    white-space: nowrap; 
+}
+
+/* Ensure inputs/selects use the full available width */
+input, select {
+    font-size: 14px; 
+    margin: 0; 
+}
+
+button.openNumberPad {
+    font-size: 14px; /* Maintain button size */
+    padding: 8px 12px; /* Adjust padding for button */
+}
+
+#button-container {
+    display: flex;             
+    justify-content: space-between; /* Space between buttons */
+    gap: 10px;                
+    margin-top: 15px;         
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif; /* Apply the chosen font */
+    font-size: 28px; /* Increase font size for better visibility */
+    font-weight: 600; /* Ensure the font is bold */
+    color: #4A90E2; /* Set a vibrant color, e.g., a shade of blue */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Optional: add subtle text shadow for depth */
+}
+
+
+.last {
+     /* Adjust this value as needed */
+    /* or */
+    width: 260px;
+}
+
+.container.themeBtn{
+    padding-left: 100px;
+    padding-right: 0px;
+}
